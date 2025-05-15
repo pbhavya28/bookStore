@@ -1,0 +1,9 @@
+{
+  "port": 3030,
+  "host": "localhost",
+  "username": "admin",
+  "userpassword": "admin",
+  "userstring": "ar5i3kk",
+  "clustername": "valtech",
+  "dbname": "bookStore"
+}
