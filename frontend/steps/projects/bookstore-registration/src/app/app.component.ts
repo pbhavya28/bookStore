@@ -4,8 +4,10 @@ import { Component } from "@angular/core";
   selector: 'app-root',
 
   template: `
-    <!-- <app-detail></app-detail> -->
+
+
     <router-outlet></router-outlet>
+
   `,
   standalone: false,
   styles: []

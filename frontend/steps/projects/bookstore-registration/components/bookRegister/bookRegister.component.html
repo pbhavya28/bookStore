@@ -1,0 +1,157 @@
+<!-- <form [formGroup]="bookForm" (ngSubmit)="submitBook()">
+    <h2>Register New Book</h2>
+  
+    <label>
+      Title:
+      <input type="text" formControlName="title" />
+    </label><br />
+  
+    <label>
+      Author:
+      <input type="text" formControlName="author" />
+    </label><br />
+  
+    <label>
+      Publisher:
+      <input type="text" formControlName="publisher" />
+    </label><br />
+  
+    <label>
+      Publish Date:
+      <input type="date" formControlName="publishDate" />
+    </label><br />
+  
+    <label>
+      Edition:
+      <input type="text" formControlName="edition" />
+    </label><br />
+  
+    <label>
+      ISBN:
+      <input type="text" formControlName="isbn" />
+    </label><br />
+  
+    <label>
+      Language:
+      <input type="text" formControlName="language" />
+    </label><br />
+  
+    <label>
+      Pages:
+      <input type="number" formControlName="pages" />
+    </label><br />
+  
+    <label>
+      Price:
+      <input type="number" formControlName="price" />
+    </label><br />
+  
+    <label>
+      Currency:
+      <input type="text" formControlName="currency" />
+    </label><br />
+  
+    <label>
+      Category:
+      <input type="text" formControlName="category" />
+    </label><br />
+  
+    <label>
+      Description:
+      <textarea formControlName="description" rows="4"></textarea>
+    </label><br />
+  
+    <label>
+      Cover Image URL:
+      <input type="text" formControlName="coverImage" />
+    </label><br />
+  
+    <label>
+      Download Link:
+      <input type="text" formControlName="downloadLink" />
+    </label><br />
+  
+    <div formArrayName="images">
+      <label *ngFor="let image of images.controls; let i = index">
+        Image URL {{ i + 1 }}:
+        <input type="text" [formControlName]="i" />
+      </label><br />
+    </div>
+  
+    <div formArrayName="exploreMore">
+      <label *ngFor="let book of exploreMore.controls; let i = index">
+        Explore Book ID {{ i + 1 }}:
+        <input type="number" [formControlName]="i" />
+      </label><br />
+    </div>
+  
+    <div formArrayName="tags">
+      <label *ngFor="let tag of tags.controls; let i = index">
+        Tag {{ i + 1 }}:
+        <input type="text" [formControlName]="i" />
+        <button type="button" (click)="removeTag(i)">Remove</button>
+      </label><br />
+      <button type="button" (click)="addTag()">Add Tag</button><br />
+    </div>
+  
+    
+    <button type="submit" [disabled]="bookForm.invalid">Submit Book</button>
+  </form>
+   -->
+
+
+   <form [formGroup]="bookForm" (ngSubmit)="submitBook()">
+    <h2>Register New Book</h2>
+  
+    <!-- 📸 Image Count Input (Not saved to DB) -->
+    
+  
+    <label>Title: <input type="text" formControlName="title" /></label><br />
+    <label>Author: <input type="text" formControlName="author" /></label><br />
+    <label>Publisher: <input type="text" formControlName="publisher" /></label><br />
+    <label>Publish Date: <input type="date" formControlName="publishDate" /></label><br />
+    <label>Edition: <input type="text" formControlName="edition" /></label><br />
+    <label>ISBN: <input type="text" formControlName="isbn" /></label><br />
+    <label>Language: <input type="text" formControlName="language" /></label><br />
+    <label>Pages: <input type="number" formControlName="pages" /></label><br />
+    <label>Price: <input type="number" formControlName="price" /></label><br />
+    <label>Currency: <input type="text" formControlName="currency" /></label><br />
+    <label>Category: <input type="text" formControlName="category" /></label><br />
+    <label>Description: <textarea formControlName="description" rows="4"></textarea></label><br />
+    <label>Cover Image URL: <input type="text" formControlName="coverImage" /></label><br />
+    <label>Download Link: <input type="text" formControlName="downloadLink" /></label><br />
+  
+
+    <label>
+        Number of Images:
+        <input type="number" [value]="imageCount" (input)="updateImageFields($event)" min="0" />
+      </label><br /><br />
+    <!-- 🔁 Images -->
+    <div formArrayName="images">
+      <label *ngFor="let image of images.controls; let i = index">
+        Image URL {{ i + 1 }}:
+        <input type="text" [formControlName]="i" required />
+      </label><br />
+    </div>
+  
+    <!-- 📚 Explore More -->
+    <div formArrayName="exploreMore">
+      <label *ngFor="let book of exploreMore.controls; let i = index">
+        Explore Book ID {{ i + 1 }}:
+        <input type="number" [formControlName]="i" required />
+      </label><br />
+    </div>
+  
+    <!-- 🔖 Tags -->
+    <div formArrayName="tags">
+      <label *ngFor="let tag of tags.controls; let i = index">
+        Tag {{ i + 1 }}:
+        <input type="text" [formControlName]="i" required />
+        <button type="button" (click)="removeTag(i)">Remove</button>
+      </label><br />
+      <button type="button" (click)="addTag()">Add Tag</button><br />
+    </div>
+  
+    <button type="submit" [disabled]="bookForm.invalid">Submit Book</button>
+  </form>
+  
