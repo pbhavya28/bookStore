@@ -5,6 +5,8 @@ import { DetailComponent } from './components/detail/detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/Home/home.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { BookRegisterComponent } from './components/bookRegister/bookRegister.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   // default route
   { path: '', redirectTo: '/home', pathMatch: 'full' }, 
   {path: 'home',component: HomeComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'add-book', component: BookRegisterComponent}
 ];
 
 @NgModule({
