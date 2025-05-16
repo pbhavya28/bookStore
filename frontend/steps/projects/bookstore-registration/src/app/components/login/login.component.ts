@@ -26,18 +26,46 @@ togglePasswordVisibility(): void {
     });
   }
 
+  // onSubmit(): void {
+  //   if (this.loginForm.invalid) return;
+
+  //   this.http.post('http://localhost:3000/api/users/login', this.loginForm.value)
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         this.successMessage = res.message;
+  //         this.errorMessage = '';
+  //         this.loginForm.reset();
+  //         this.router.navigate(['/home'])
+
+  //         // Optional: Store token or userId if returned
+  //       },
+  //       error: err => {
+  //         this.errorMessage = err.error.message || 'Login failed.';
+  //         this.successMessage = '';
+  //       }
+  //     });
+  // }
+
   onSubmit(): void {
     if (this.loginForm.invalid) return;
-
-    this.http.post('http://localhost:3000/api/users/login', this.loginForm.value)
+  
+    const { email, password } = this.loginForm.value;
+  
+    this.http.post('http://localhost:3000/api/users/login', { email, password })
       .subscribe({
         next: (res: any) => {
           this.successMessage = res.message;
           this.errorMessage = '';
           this.loginForm.reset();
-          this.router.navigate(['/home'])
-
-          // Optional: Store token or userId if returned
+  
+          // ✅ Check if user is admin
+          if (email === 'admin@gmail.com') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/home']);
+          }
+  
+          // Optional: Store token or user info in localStorage/sessionStorage
         },
         error: err => {
           this.errorMessage = err.error.message || 'Login failed.';
@@ -45,4 +73,5 @@ togglePasswordVisibility(): void {
         }
       });
   }
+  
 }

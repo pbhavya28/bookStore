@@ -9,10 +9,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { BookRegisterComponent } from '../../components/bookRegister/bookRegister.component';
+import { BookRegisterComponent } from './components/bookRegister/bookRegister.component';
 
 import { DetailComponent } from './components/detail/detail.component';
+
 import { HomeComponent } from './components/Home/home.component';
+
+import { AdminComponent } from './components/admin/admin.component';
+
 
 
 
@@ -21,6 +25,8 @@ import { HomeComponent } from './components/Home/home.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
+
+    AdminComponent,
 
     BookRegisterComponent,
 
