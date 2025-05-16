@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   showPassword = false;
+  isUserLogged:boolean = false;
+  static isUserLogged: any;
 
 togglePasswordVisibility(): void {
   this.showPassword = !this.showPassword;
@@ -26,25 +28,7 @@ togglePasswordVisibility(): void {
     });
   }
 
-  // onSubmit(): void {
-  //   if (this.loginForm.invalid) return;
-
-  //   this.http.post('http://localhost:3000/api/users/login', this.loginForm.value)
-  //     .subscribe({
-  //       next: (res: any) => {
-  //         this.successMessage = res.message;
-  //         this.errorMessage = '';
-  //         this.loginForm.reset();
-  //         this.router.navigate(['/home'])
-
-  //         // Optional: Store token or userId if returned
-  //       },
-  //       error: err => {
-  //         this.errorMessage = err.error.message || 'Login failed.';
-  //         this.successMessage = '';
-  //       }
-  //     });
-  // }
+ 
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
@@ -57,15 +41,16 @@ togglePasswordVisibility(): void {
           this.successMessage = res.message;
           this.errorMessage = '';
           this.loginForm.reset();
+          this.isUserLogged = true;
   
           // ✅ Check if user is admin
           if (email === 'admin@gmail.com') {
             this.router.navigate(['/admin']);
+        
           } else {
             this.router.navigate(['/home']);
+            this.isUserLogged = true;
           }
-  
-          // Optional: Store token or user info in localStorage/sessionStorage
         },
         error: err => {
           this.errorMessage = err.error.message || 'Login failed.';
