@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 const router = express.Router();
+const session = require('express-session');
 
 
 app.use(express.json());
@@ -14,6 +15,12 @@ const UserSchema = new mongoose.Schema({
   password: String
 });
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
+
+router.get("/logout",(req,res)=>{
+  req.session.destroy(()=>{
+    res.redirect("/")
+  })
+})
 
 // POST /api/users/register
 router.post('/register', async (req, res) => {
@@ -41,11 +48,20 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials.' });
 
     res.json({ message: 'Login successful', userId: user._id });
+    res.redirect('/home')
+    
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
+
+router.post('/home',async(req,res) => {
+  console.log("Home route call");
+  
+})
 
 module.exports = router;
 
