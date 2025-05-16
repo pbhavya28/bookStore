@@ -9,10 +9,9 @@ import { HomeComponent } from './components/Home/home.component';
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-
   { path: 'detail/:id', component: DetailComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // default route
+  // default route
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, 
   {path: 'home',component: HomeComponent},
 ];
 
