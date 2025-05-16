@@ -13,6 +13,11 @@ export class RegisterComponent {
   successMessage = '';
   errorMessage = '';
 
+  showPassword = false;
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],

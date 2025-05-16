@@ -11,6 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  showPassword = false;
+
+togglePasswordVisibility(): void {
+  this.showPassword = !this.showPassword;
+}
   loginForm: FormGroup;
   successMessage = '';
   errorMessage = '';
