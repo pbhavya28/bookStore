@@ -5,5 +5,7 @@
   "userpassword": "admin",
   "userstring": "ar5i3kk",
   "clustername": "valtech",
-  "dbname": "bookStore"
+  "dbname": "bookStore",
+  "admin": "admin@gmail.com",
+  "adminpassword" : "admin123"
 }
