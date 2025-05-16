@@ -3,17 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
 
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { AppRoutingModule } from './app-routing.module';
-
+import { HomeComponent } from './components/home/home.component';
 import { BookRegisterComponent } from '../../components/bookRegister/bookRegister.component';
-
-import { HomeComponent } from './components/Home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
-
 
 
 @NgModule({
@@ -21,13 +19,9 @@ import { DetailComponent } from './components/detail/detail.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-
-    BookRegisterComponent
-
-
     HomeComponent,
     DetailComponent,
-
+    BookRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,3 +34,44 @@ import { DetailComponent } from './components/detail/detail.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+
+// import { NgModule } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { HttpClientModule } from '@angular/common/http';
+
+// import { AppComponent } from './app.component';
+
+// import { RegisterComponent } from './components/register/register.component';
+// import { LoginComponent } from './components/login/login.component';
+// import { AppRoutingModule } from './app-routing.module';
+
+// import { BookRegisterComponent } from '../../components/bookRegister/bookRegister.component';
+
+// import { HomeComponent } from './components/Home/home.component';
+// import { DetailComponent } from './components/detail/detail.component';
+
+
+// @NgModule({
+//   declarations: [
+//     AppComponent,
+//     RegisterComponent,
+//     LoginComponent,
+
+//     BookRegisterComponent,
+//     HomeComponent,
+//     DetailComponent,
+
+//   ],
+//   imports: [
+//     BrowserModule,
+//     HttpClientModule,
+//     FormsModule,
+//     ReactiveFormsModule,
+//     AppRoutingModule,
+//   ],
+//   providers: [],
+//   bootstrap: [AppComponent],
+// })
+// export class AppModule {}

@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
 
   template: `
 
-
+    <!-- <app-detail></app-detail> -->
     <router-outlet></router-outlet>
 
   `,
