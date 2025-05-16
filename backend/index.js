@@ -75,6 +75,6 @@ mongoose.connect(url, {
 app.use('/api/users', userRoutes);  // http://localhost:3000/api/users
 app.use('/api/books', bookRoutes);  // http://localhost:3000/api/books
 
-// Start server
+
 app.listen(3000, () => console.log('Server running on port 3000'));
 

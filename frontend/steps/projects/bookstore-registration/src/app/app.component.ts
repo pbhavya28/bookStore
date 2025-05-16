@@ -2,9 +2,12 @@ import { Component } from "@angular/core";
 
 @Component({
   selector: 'app-root',
+
   template: `
-    <app-book-register></app-book-register>
-    <!-- <router-outlet></router-outlet> -->
+
+
+    <router-outlet></router-outlet>
+
   `,
   standalone: false,
   styles: []
@@ -12,3 +15,4 @@ import { Component } from "@angular/core";
 export class AppComponent {
   title = 'bookstore-registration';
 }
+
