@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+import { Router } from '@angular/router';
+
 @Component({
   standalone: false,
   selector: 'app-login',
@@ -12,8 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   successMessage = '';
   errorMessage = '';
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -29,6 +30,8 @@ export class LoginComponent {
           this.successMessage = res.message;
           this.errorMessage = '';
           this.loginForm.reset();
+          this.router.navigate(['/home'])
+
           // Optional: Store token or userId if returned
         },
         error: err => {

@@ -1,0 +1,222 @@
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    background-color: #fff;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  nav .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding-left: 0;
+    margin: 0;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+  nav .extra-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+  }
+  nav .extra-links a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .hero {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 4rem;
+    color: #000;
+  }
+
+  .hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    filter: brightness(0.85);
+  }
+
+  .hero-image-container img.active {
+    opacity: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem 3rem;
+    max-width: 480px;
+    border-radius: 8px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 1.2rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .shop-btn {
+    background-color: black;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  .shop-btn:hover {
+    background-color: #444;
+  }
+
+  .section-cards {
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background-color: #fff;
+  }
+  .card {
+    width: 300px;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .card:hover img {
+    transform: scale(1.1);
+  }
+  .card-text {
+    padding: 1rem 1.2rem 1.6rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .card-subtitle {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  .top-cat{
+    width: auto;
+    height: 300px;
+    background-color: rgb(250, 243, 231);
+    padding: 1px 20px 20px;
+  }
+
+
+  .footer {
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #f1f1f1;
+    padding: 40px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    /* max-width: 1200px; */
+    margin-left: 173px;
+  }
+  
+  .footer-section {
+    flex: 1 1 250px;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .footer-section p {
+    margin: 4px 0;
+    color: #ccc;
+    font-size: 14px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .social-icons a {
+    color: #ccc;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #4fc3f7;
+  }
+  
+  .love-text {
+    margin-top: 12px;
+    font-style: italic;
+    color: #bbb;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #999;
+  }
