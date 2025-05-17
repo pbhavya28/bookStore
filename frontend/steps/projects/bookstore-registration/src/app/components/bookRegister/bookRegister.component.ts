@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-register',
@@ -12,7 +14,7 @@ export class BookRegisterComponent {
   bookForm: FormGroup;
   imageCount = 1;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private authservice: AuthService, private router:Router) {
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
@@ -104,5 +106,15 @@ submitBook(): void {
     } else {
       console.warn('⚠️ Form is invalid');
     }
+  }
+
+  logoutUser() {
+    alert("You are Logged Out")
+    this.authservice.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: err => console.error('Logout failed', err)
+    });
   }
 }

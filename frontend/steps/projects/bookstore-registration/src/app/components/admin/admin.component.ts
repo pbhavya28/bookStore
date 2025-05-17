@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
+import { AuthService } from '../../services/auth.service';
 import { Route, Router } from '@angular/router';
 
 export interface Book {
@@ -21,7 +22,7 @@ export interface Book {
 export class AdminComponent implements OnInit {
   books: Book[] = [];
 
-  constructor(private bookService: BookService, private router:Router) {}
+  constructor(private bookService: BookService, private router:Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.fetchBooks();
@@ -41,5 +42,15 @@ export class AdminComponent implements OnInit {
 
   addBook(){
     this.router.navigate(['/add-book'])
+  }
+
+  logoutUser() {
+    alert("You are Logged Out")
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: err => console.error('Logout failed', err)
+    });
   }
 }
