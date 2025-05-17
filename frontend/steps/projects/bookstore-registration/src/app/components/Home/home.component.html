@@ -1,200 +1,264 @@
 <nav>
-    <div class="logo">BOOKLOCA</div>
-    <ul>
-      <li routerLink="#">Home</li>
-      <li routerLink="#">Pages</li>
-      <li routerLink="#">Shop</li>
-      <li routerLink="#">Authors</li>
-      <li routerLink="#">Blog</li>
-      <li routerLink="#">Contact</li>
-    </ul>
+  <div class="logo">BOOKLOCA</div>
+  <ul>
+    <li routerLink="#">Home</li>
+    <li routerLink="#">Pages</li>
+    <li routerLink="#">Shop</li>
+    <li routerLink="#">Authors</li>
+    <li routerLink="#">Blog</li>
+    <li routerLink="#">Contact</li>
+  </ul>
 
-    @if (userState) {
-      <div class="extra-links">
-        <button class="shop-btn" (click)="logoutUser()">Logout</button>
-      </div>
-    }@else {
-      <div class="extra-links">
-   
-        <button class="shop-btn" routerLink="/login">Login</button>
-    
-  
-      </div>
-    }
-    
-  </nav>
-
-  
-
-  <section class="hero">
-    <div class="hero-image-container">
-      <img src="/images/image copy.png" class="active" alt="Slide 1">
-      <img src="/images/Brown and Blue Photo Library Birthday Virtual Background.png" alt="Slide 2">
-      <img src="/images/header.png" alt="Slide 3">
-    </div>
-    <div class="hero-content">
-      <h1>Best novels of all time: You must-read.</h1>
-      <button class="shop-btn">Shop Now</button>
-    </div>
-  </section>
-
-  <div class="container mt-5">
-    <div class="row">
-      <!-- First Container -->
-      <div class="col-md-6 mb-4" >
-        <div class="p-3 border rounded">
-          <div class="row align-items-center">
-            <!-- Text Left -->
-            <div class="col-6">
-              <h5>Why Read Books ?</h5>
-              <p>Reading books is important for numerous reasons, impacting both mental and physical well-being, and enhancing various skills.</p>
-            </div>
-            <!-- Image Right -->
-            <div class="col-6 text-end">
-              <img src="/images/bookPage1.png" width="200px" class="img-fluid rounded" alt="Image 1">
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Second Container -->
-      <div class="col-md-6 mb-4">
-        <div class="p-3 border rounded">
-          <div class="row align-items-center">
-            <!-- Text Left -->
-            <div class="col-6">
-              <h5>Fact about Books</h5>
-              <p>The Adventures of Tom Sawyer is the first book written with a typewriter. The Harvard University library has four law books bound in human skin.</p>
-            </div>
-            <!-- Image Right -->
-            <div class="col-6 text-end">
-              <img src="/images/bookCover3.png" width="200px" class="img-fluid rounded" alt="Image 2">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="extra-links" *ngIf="userState; else loginTemplate">
+    <span class="welcome-text"
+      >👋 Welcome, <strong>{{ userName }}</strong></span
+    >
+    <button class="shop-btn" (click)="logoutUser()">Logout</button>
   </div>
-
-
-  <div class="container mt-5">
-    <div class="row text-center">
-      <!-- Image 1 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <img src="/images/image.png" width="90px" class="img-fluid rounded" alt="Image 1">
-        <br><br>
-        <h5>Best Books</h5>
-        <p class="mt-2">A curated collection of exceptional reads across genres.</p>
-      </div>
-      
-      <!-- Image 2 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <img src="/images/image1.png" width="90px"  class="img-fluid rounded" alt="Image 2">
-        <br><br>
-        <h5>Science Fiction</h5>
-        <p class="mt-2">Imaginative stories exploring futuristic concepts and technology.</p>
-      </div>
-      
-      <!-- Image 3 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <img src="/images/image2.png" width="140px" class="img-fluid rounded" alt="Image 3">
-        <br><br>
-        <h5>Biography</h5>
-        <p class="mt-2">Real-life stories of remarkable individuals and their journeys.</p>
-      </div>
-      
-      <!-- Image 4 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <img src="/images/image3.png" width="140px" class="img-fluid rounded" alt="Image 4">
-        <br><br>
-        <h5>Readers Choice</h5>
-        <p class="mt-2">Top picks selected by readers for their impact and popularity.</p>
-      </div>
+  <ng-template #loginTemplate>
+    <div class="extra-links">
+      <button class="shop-btn" routerLink="/login">Login</button>
     </div>
+  </ng-template>
+</nav>
+
+<section class="hero">
+  <div class="hero-image-container">
+    <img src="/images/image copy.png" class="active" alt="Slide 1" />
+    <img
+      src="/images/Brown and Blue Photo Library Birthday Virtual Background.png"
+      alt="Slide 2"
+    />
+    <img src="/images/header.png" alt="Slide 3" />
   </div>
-
-  <div class="container">
-    <h1 style="text-align: center;">Our Books</h1>
-</div>
-  <section class="section-cards">
-    @for (book of books; track book._id) {
-    <div class="card">
-      <img src="{{book.coverImage}}" alt="Korean Authors" id="coverImage"/>
-      <div class="card-text">
-        <div class="card-title">{{ book.title }}</div>
-        <div class="card-subtitle">{{ book.author }}</div>
-        <button class="shop-btn">Show Details</button>
-      </div>
-    </div>
-  }
-  </section>
-
-  <!-- Top Category -->
-   <div class="container">
-       <h1 style="text-align: center;">Top Category</h1>
-   </div>
-  <section class="top-cat">
-    <div class="container mt-5">
-        <div class="row text-center">
-          <!-- Image 1 -->
-          <div class="col-md-3 col-sm-6 mb-4">
-            <img src="/images/cover7.png" width="200px" class="img-fluid rounded" alt="Image 1">
-            <p class="mt-2 col-11">"A guide to wealth through the eyes of rich and poor mentors."</p>
-          </div>
-          
-          <!-- Image 2 -->
-          <div class="col-md-3 col-sm-6 mb-4">
-            <img src="/images/cover6.png" width="200px"  class="img-fluid rounded" alt="Image 2">
-            <p class="mt-2">"Ikigai explores the Japanese secret to a long, happy, and purposeful life."</p>
-          </div>
-          
-          <!-- Image 3 -->
-          <div class="col-md-3 col-sm-6 mb-4">
-            <img src="/images/cover4.png" width="200px"  class="img-fluid rounded" alt="Image 3">
-            <p class="mt-2">"A guide to trusting gut feelings built on deep expertise."</p>
-          </div>
-          
-          <!-- Image 4 -->
-          <div class="col-md-3 col-sm-6 mb-4">
-            <img src="/images/cover5.png" width="200px" class="img-fluid rounded" alt="Image 4">
-            <p class="mt-2">"Atomic Habits teaches how tiny changes lead to remarkable results."</p>
-          </div>
-        </div>
-      </div>
+  <div class="hero-content">
+    <h1>Best novels of all time: You must-read.</h1>
+    <button class="shop-btn">Shop Now</button>
+  </div>
 </section>
 
- 
-  
-  
-<br><br>
-  <!-- footer  -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section contact">
-        <h3>Contact Us</h3>
-        <!-- <p>Email: support@teamQueen.com</p> -->
-        <p>Phone: +91 888-6666-4567</p>
-        <p>Address: Ahmedabad, Gujarat</p>
-      </div>
-
-      <div class="footer-section social">
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+<div class="container mt-5">
+  <div class="row">
+    <!-- First Container -->
+    <div class="col-md-6 mb-4">
+      <div class="p-3 border rounded">
+        <div class="row align-items-center">
+          <!-- Text Left -->
+          <div class="col-6">
+            <h5>Why Read Books ?</h5>
+            <p>
+              Reading books is important for numerous reasons, impacting both
+              mental and physical well-being, and enhancing various skills.
+            </p>
+          </div>
+          <!-- Image Right -->
+          <div class="col-6 text-end">
+            <img
+              src="/images/bookPage1.png"
+              width="200px"
+              class="img-fluid rounded"
+              alt="Image 1"
+            />
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="footer-section developer">
-        <h3>Developed By</h3>
-        <p class="love-text">Team Angular at Valtech</p>
+    <!-- Second Container -->
+    <div class="col-md-6 mb-4">
+      <div class="p-3 border rounded">
+        <div class="row align-items-center">
+          <!-- Text Left -->
+          <div class="col-6">
+            <h5>Fact about Books</h5>
+            <p>
+              The Adventures of Tom Sawyer is the first book written with a
+              typewriter. The Harvard University library has four law books
+              bound in human skin.
+            </p>
+          </div>
+          <div class="col-6 text-end">
+            <img
+              src="/images/bookCover3.png"
+              width="200px"
+              class="img-fluid rounded"
+              alt="Image 2"
+            />
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2025 Team Valtech Mobility. All rights reserved.
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="/images/image.png"
+        width="90px"
+        class="img-fluid rounded"
+        alt="Image 1"
+      />
+      <br /><br />
+      <h5>Best Books</h5>
+      <p class="mt-2">
+        A curated collection of exceptional reads across genres.
+      </p>
     </div>
-  </footer>
 
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="/images/image1.png"
+        width="90px"
+        class="img-fluid rounded"
+        alt="Image 2"
+      />
+      <br /><br />
+      <h5>Science Fiction</h5>
+      <p class="mt-2">
+        Imaginative stories exploring futuristic concepts and technology.
+      </p>
+    </div>
 
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="/images/image2.png"
+        width="140px"
+        class="img-fluid rounded"
+        alt="Image 3"
+      />
+      <br /><br />
+      <h5>Biography</h5>
+      <p class="mt-2">
+        Real-life stories of remarkable individuals and their journeys.
+      </p>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="/images/image3.png"
+        width="140px"
+        class="img-fluid rounded"
+        alt="Image 4"
+      />
+      <br /><br />
+      <h5>Readers Choice</h5>
+      <p class="mt-2">
+        Top picks selected by readers for their impact and popularity.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 style="text-align: center">Our Books</h1>
+</div>
+<section class="section-cards">
+  @for (book of books; track book._id) {
+  <div class="card">
+    <img src="{{ book.coverImage }}" alt="Korean Authors" id="coverImage" />
+    <div class="card-text">
+      <div class="card-title">{{ book.title }}</div>
+      <div class="card-subtitle">{{ book.author }}</div>
+      <button class="shop-btn">Show Details</button>
+    </div>
+  </div>
+  }
+</section>
+
+<div class="container">
+  <h1 style="text-align: center">Top Category</h1>
+</div>
+<section class="top-cat">
+  <div class="container mt-5">
+    <div class="row text-center">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <img
+          src="/images/cover7.png"
+          width="200px"
+          class="img-fluid rounded"
+          alt="Image 1"
+        />
+        <p class="mt-2 col-11">
+          "A guide to wealth through the eyes of rich and poor mentors."
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <img
+          src="/images/cover6.png"
+          width="200px"
+          class="img-fluid rounded"
+          alt="Image 2"
+        />
+        <p class="mt-2">
+          "Ikigai explores the Japanese secret to a long, happy, and purposeful
+          life."
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <img
+          src="/images/cover4.png"
+          width="200px"
+          class="img-fluid rounded"
+          alt="Image 3"
+        />
+        <p class="mt-2">
+          "A guide to trusting gut feelings built on deep expertise."
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <img
+          src="/images/cover5.png"
+          width="200px"
+          class="img-fluid rounded"
+          alt="Image 4"
+        />
+        <p class="mt-2">
+          "Atomic Habits teaches how tiny changes lead to remarkable results."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br /><br />
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <!-- <p>Email: support@teamQueen.com</p> -->
+      <p>Phone: +91 888-6666-4567</p>
+      <p>Address: Ahmedabad, Gujarat</p>
+    </div>
+
+    <div class="footer-section social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+      </div>
+    </div>
+
+    <div class="footer-section developer">
+      <h3>Developed By</h3>
+      <p class="love-text">Team Angular at Valtech</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Team Valtech Mobility. All rights reserved.
+  </div>
+</footer>

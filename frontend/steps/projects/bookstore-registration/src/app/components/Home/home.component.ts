@@ -1,18 +1,15 @@
-
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service'; // Adjust path as needed
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { BookService } from '../../services/book.service';
 import { Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 
 export interface Book {
   bookId: number;
   title: string;
   author: string;
   coverImage: string;
-  _id: string; // MongoDB ID
+  _id: string;
 }
-
 
 @Component({
   standalone:false,
@@ -20,35 +17,46 @@ export interface Book {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  title = "Home page";
-  
-   books: Book[] = [];
-   userState:boolean = true;
-  //  userState:any = LoginComponent.isUserLogged;
-  
+export class HomeComponent implements OnInit {
+  books: Book[] = [];
+  userState: boolean = false;
+  userName: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router,private bookService: BookService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private bookService: BookService
+  ) {
+    console.log("=========>>>>>>>>", this.userName)
+  }
 
-   ngOnInit(): void {
-      this.fetchBooks();
-    }
-  
-    fetchBooks(): void {
-      this.bookService.getBooks().subscribe((data: Book[]) => {
-        this.books = data;
-      });
-    }
+  ngOnInit(): void {
+    this.fetchBooks();
+
+    // Subscribe to login status
+    this.authService.isLoggedIn().subscribe(status => {
+      this.userState = status;
+    });
+
+    this.authService.getUserName().subscribe(name => {
+      this.userName = name;
+    });
+  }
+
+  fetchBooks(): void {
+    this.bookService.getBooks().subscribe((data: Book[]) => {
+      this.books = data;
+    });
+  }
 
   logoutUser() {
+    alert("You are Logged Out")
     this.authService.logout().subscribe({
       next: () => {
-
-        this.router.navigate(['/login']);
-        this.userState = false;
+        this.router.navigate(['/home']);
       },
       error: err => console.error('Logout failed', err)
     });
   }
-  
 }
+
