@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: false,
@@ -21,7 +22,7 @@ togglePasswordVisibility(): void {
   loginForm: FormGroup;
   successMessage = '';
   errorMessage = '';
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -41,9 +42,9 @@ togglePasswordVisibility(): void {
           this.successMessage = res.message;
           this.errorMessage = '';
           this.loginForm.reset();
-          this.isUserLogged = true;
+          this.authService.login('dummyToken'); 
+          this.authService.setUserName(res.user.name);
   
-          // ✅ Check if user is admin
           if (email === 'admin@gmail.com') {
             this.router.navigate(['/admin']);
         
@@ -51,6 +52,7 @@ togglePasswordVisibility(): void {
             this.router.navigate(['/home']);
             this.isUserLogged = true;
           }
+          console.log("message======", res)
         },
         error: err => {
           this.errorMessage = err.error.message || 'Login failed.';
