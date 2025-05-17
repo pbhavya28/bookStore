@@ -7,7 +7,6 @@ const router = express.Router();
 const session = require("express-session");
 
 app.use(express.json());
-// Define User model inline or import if using separate file
 const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
@@ -21,7 +20,6 @@ router.get("/logout", (req, res) => {
   });
 });
 
-// POST /api/users/register
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -37,7 +35,6 @@ router.post("/register", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials." });
@@ -50,7 +47,7 @@ router.post("/login", async (req, res) => {
     res.json({
       message: "Login successful",
       user: {
-        name: user.username, // Username to be stored in localStorage
+        name: user.username,
         email: user.email,
         _id: user._id,
       },
@@ -66,4 +63,3 @@ router.post("/home", async (req, res) => {
 });
 
 module.exports = router;
-
