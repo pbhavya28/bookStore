@@ -48,6 +48,17 @@ export class HomeComponent implements OnInit {
       this.books = data;
     });
   }
+  handleShowDetails(bookId: number): void {
+    if (this.userState) {
+      this.router.navigate(['/detail', bookId]);
+    } else {
+      alert('Please log in first to view book details.');
+    }
+  }
+  trackByBookId(index: number, book: any): string {
+    return book._id;
+  }
+  
 
   logoutUser() {
     alert("You are Logged Out")

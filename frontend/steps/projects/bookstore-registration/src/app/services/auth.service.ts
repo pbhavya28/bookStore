@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/api/users';
+  private baseUrl = 'http://localhost:5000/api/users';
   private loggedIn = new BehaviorSubject<boolean>(false);
   private userName = new BehaviorSubject<string | null>(null); 
 
@@ -19,6 +19,7 @@ export class AuthService {
       this.userName.next(storedName);
     }
   }
+  
 
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
@@ -28,6 +29,7 @@ export class AuthService {
     localStorage.setItem('token', token);
     this.loggedIn.next(true);
   }
+  
 
   logout(): Observable<any> {
     return new Observable(observer => {
@@ -36,7 +38,6 @@ export class AuthService {
         responseType: 'text'
       }).subscribe({
         next: res => {
-          localStorage.removeItem('token');
           localStorage.removeItem('userName'); 
           this.loggedIn.next(false);
           this.userName.next(null);
@@ -47,7 +48,7 @@ export class AuthService {
       });
     });
   }
-
+ 
   setUserName(name: string): void {
     this.userName.next(name);
     localStorage.setItem('userName', name); 
