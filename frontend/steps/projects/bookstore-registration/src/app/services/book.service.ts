@@ -4,24 +4,33 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {
-  private baseUrl = 'http://localhost:3000/api/books';
+  private baseUrl = 'http://localhost:5000/api/books';
+  private apiUrl = 'http://localhost:5000/api'; // Define apiUrl here
 
-  bookData:any = []
+  bookData: any = [];
   constructor(private http: HttpClient) {}
 
-  getBookById(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);  
+  getBookById(bookId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${bookId}`);  
   }
 
   getBooks(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
 
-  deleteBook(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+ 
+  deleteBook(bookId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${bookId}`);
   }
 
-  rateBook(id: string, rating: number, comment: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/rate`, { rating, comment });
+
+  rateBook(bookId: string, payload: { rating: number; comment: string }, username: string): Observable<any> {
+    const headers = { username }; 
+    console.log('Headers being sent:', headers); 
+    return this.http.post(`${this.baseUrl}/${bookId}/rate`, payload, { headers });
+  }
+
+  getRelatedBooks(bookId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/explore-more/${bookId}`);
   }
 }

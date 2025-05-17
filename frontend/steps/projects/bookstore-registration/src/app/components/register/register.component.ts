@@ -29,7 +29,7 @@ export class RegisterComponent {
   onSubmit(): void {
     if (this.registerForm.invalid) return;
 
-    this.http.post('http://localhost:3000/api/users/register', this.registerForm.value)
+    this.http.post('http://localhost:5000/api/users/register', this.registerForm.value)
       .subscribe({
         next: (res: any) => {
           this.successMessage = res.message || 'Registration successful!';

@@ -155,16 +155,22 @@
   <h1 style="text-align: center">Our Books</h1>
 </div>
 <section class="section-cards">
-  @for (book of books; track book._id) {
-  <div class="card">
-    <img src="{{ book.coverImage }}" alt="Korean Authors" id="coverImage" />
-    <div class="card-text">
-      <div class="card-title">{{ book.title }}</div>
-      <div class="card-subtitle">{{ book.author }}</div>
-      <button class="shop-btn">Show Details</button>
+
+  <div *ngFor="let book of books; trackBy: trackByBookId">
+    <div class="card">
+      <img [src]="book.coverImage" alt="Book Cover" id="coverImage" />
+      <div class="card-text">
+        <div class="card-title">{{ book.title }}</div>
+        <div class="card-subtitle">{{ book.author }}</div>
+        <button
+          class="shop-btn"
+          (click)="handleShowDetails(book.bookId)"
+        >
+          Show Details
+        </button>
+      </div>
     </div>
   </div>
-  }
 </section>
 
 <div class="container">
