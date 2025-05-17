@@ -33,8 +33,8 @@ export class BookRegisterComponent {
       images: this.fb.array([
         this.fb.control(''),
       ]),
-      ratings: this.fb.array([]),  // Can be added later if needed
-      feedback: this.fb.array([]), // Can be added later if needed
+      ratings: this.fb.array([]),  
+      feedback: this.fb.array([]), 
       exploreMore: this.fb.array([
         this.fb.control(''),
         this.fb.control(''),
@@ -47,7 +47,6 @@ export class BookRegisterComponent {
     });
   }
 
-  // ✅ Safe accessors for template usage
   get images(): FormArray {
     return this.bookForm.get('images') as FormArray;
   }
@@ -60,18 +59,15 @@ export class BookRegisterComponent {
     return this.bookForm.get('tags') as FormArray;
   }
 
-  // ➕ Add a new tag
   addTag(): void {
     this.tags.push(this.fb.control(''));
   }
 
-  // ❌ Remove a tag
   removeTag(index: number): void {
     this.tags.removeAt(index);
   }
 
 
-  // Dynamically update image fields
   setImageFields(count: number): void {
     const imagesArray = this.bookForm.get('images') as FormArray;
     imagesArray.clear();
@@ -94,17 +90,18 @@ submitBook(): void {
   
       this.http.post('http://localhost:3000/api/books', bookData).subscribe({
         next: (res) => {
-          console.log('✅ Book submitted successfully:', res);
+          console.log('Book submitted successfully:', res);
           alert('Book saved!');
-          this.bookForm.reset(); // optional
+          this.router.navigate(['/admin'])
+          this.bookForm.reset(); 
         },
         error: (err) => {
-          console.error('❌ Error submitting book:', err);
+          console.error('Error submitting book:', err);
           alert('Failed to save book. Please try again.');
         }
       });
     } else {
-      console.warn('⚠️ Form is invalid');
+      console.warn('Form is invalid');
     }
   }
 
