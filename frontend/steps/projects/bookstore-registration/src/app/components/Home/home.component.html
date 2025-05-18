@@ -179,7 +179,8 @@
     <div class="card-text">
       <div class="card-title">{{ book.title }}</div>
       <div class="card-subtitle">{{ book.author }}</div>
-      <button class="shop-btn">Show Details</button>
+      <button class="shop-btn"
+      (click)="handleShowDetails(book.bookId)">Show Details</button>
     </div>
   </div>
   </div>

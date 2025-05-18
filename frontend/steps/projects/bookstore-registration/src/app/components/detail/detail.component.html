@@ -11,7 +11,7 @@
   </ul>
 
   <div class="extra-links" *ngIf="userState; else loginTemplate">
-    <span class="welcome-text">👋 Welcome, <strong>{{ userName }}</strong></span>
+    <span class="welcome-text"> Welcome, <strong>{{ userName }}</strong></span>
     <button class="shop-btn" (click)="logoutUser()">Logout</button>
   </div>
   <ng-template #loginTemplate>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
+import { AuthService } from '../../services/auth.service';
 
 interface Book {
   _id: string;
@@ -42,6 +43,7 @@ export class DetailComponent implements OnInit {
   relatedBooks: any[] = [];
 
   constructor(
+     private authService: AuthService,
     private route: ActivatedRoute,
     private bookService: BookService,
     private router: Router
@@ -130,11 +132,20 @@ export class DetailComponent implements OnInit {
     this.rating = rating;
   }
 
+  // logoutUser(): void {
+  //   localStorage.clear();
+  //   this.userState = false;
+  //   this.userName = '';
+  //   this.router.navigate(['/home']);
+  // }
   logoutUser(): void {
-    localStorage.clear();
-    this.userState = false;
-    this.userName = '';
-    this.router.navigate(['/login']);
+    alert("You are Logged Out");
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: err => console.error('Logout failed', err)
+    });
   }
 
   submitRating(): void {
@@ -158,6 +169,7 @@ export class DetailComponent implements OnInit {
 
     this.bookService.rateBook(this.book._id, payload, username).subscribe({
       next: (updatedBook) => {
+        
         this.book = updatedBook;
         this.calculateAverageRating();
         this.rating = 0;
