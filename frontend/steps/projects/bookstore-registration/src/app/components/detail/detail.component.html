@@ -1,9 +1,96 @@
-<div class="detail-container">
-  <h2>{{ book?.title }}</h2>
-  <p>{{ book?.author }}</p>
-  <p>{{ book?.description }}</p>
-  <p>Rating: {{ book?.rating }}</p>
-  <input type="number" [(ngModel)]="rating" min="1" max="5" placeholder="Rate (1-5)" />
-  <textarea [(ngModel)]="comment" placeholder="Leave a comment"></textarea>
-  <button (click)="submitRating()">Submit</button>
+
+<nav>
+  <div class="logo">BOOKLOCA</div>
+  <ul>
+    <li routerLink="/">Home</li>
+    <li routerLink="#">Pages</li>
+    <li routerLink="#">Shop</li>
+    <li routerLink="#">Authors</li>
+    <li routerLink="#">Blog</li>
+    <li routerLink="#">Contact</li>
+  </ul>
+
+  <div class="extra-links" *ngIf="userState; else loginTemplate">
+    <span class="welcome-text">👋 Welcome, <strong>{{ userName }}</strong></span>
+    <button class="shop-btn" (click)="logoutUser()">Logout</button>
+  </div>
+  <ng-template #loginTemplate>
+    <div class="extra-links">
+      <button class="shop-btn" routerLink="/login">Login</button>
+    </div>
+  </ng-template>
+</nav>
+
+<!-- Book Details Section -->
+<div class="book-detail-container" *ngIf="book">
+  <div class="book-cover">
+    <img [src]="book.coverImage" alt="Book Cover" />
+  </div>
+
+  <div class="book-info">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Language:</strong> {{ book.language }}</p>
+    <p><strong>Price:</strong> {{ book.price }} {{ book.currency }}</p>
+    <p><strong>Description:</strong> {{ book.description }}</p>
+    <p>
+      <strong>Average Rating: </strong>
+      <span class="rating-number">{{ averageRating | number: '1.1-1' }}</span>
+      <span class="rating-stars">★</span>
+    </p>
+
+    <a class="download-btn" [href]="book.downloadLink" target="_blank">📥 Download Book</a>
+
+    <div class="rating-section">
+      <h3>Rate this Book</h3>
+      <label for="rating">Rating:</label>
+      <div class="star-rating">
+        <span
+          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+          class="star"
+          [class.filled]="i < rating"
+          (click)="setRating(i + 1)"
+        >
+          ★
+        </span>
+      </div>
+    
+      <label for="comment">Comment:</label>
+      <textarea id="comment" [(ngModel)]="comment" rows="3"></textarea>
+    
+      <button (click)="submitRating()">Submit</button>
+    </div>
+
+
+<!-- Explore More Section -->
+<div class="explore-more" *ngIf="relatedBooks.length > 0">
+  <h3>Explore More</h3>
+  <div class="related-books">
+    <div class="related-book-card" *ngFor="let book of relatedBooks">
+      <img [src]="book.coverImage" alt="Book Cover" />
+      <div class="card-text">
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <button class="shop-btn" [routerLink]="['/detail', book.bookId]">Show Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="book-feedback" *ngIf="book.feedback?.length">
+      <h3>User Feedbacks</h3>
+      <div class="review-card" *ngFor="let fb of book.feedback">
+        <p class="review-header">
+          <strong>{{ parseFeedback(fb).username }}</strong>
+        </p>
+        <p class="review-stars">
+          <!-- Full Stars -->
+          <span *ngFor="let star of [].constructor(parseFeedback(fb).rating)">★</span>
+          <!-- Empty Stars -->
+          <span *ngFor="let star of [].constructor(5 - parseFeedback(fb).rating)">☆</span>
+        </p>
+        <p class="review-comment">{{ parseFeedback(fb).comment }}</p>
+      </div>
+    </div>
+  </div>
 </div>

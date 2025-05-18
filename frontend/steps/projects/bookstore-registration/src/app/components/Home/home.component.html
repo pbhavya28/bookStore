@@ -183,6 +183,21 @@
     </div>
   </div>
   </div>
+<!--   <div *ngFor="let book of books; trackBy: trackByBookId">
+    <div class="card">
+      <img [src]="book.coverImage" alt="Book Cover" id="coverImage" />
+      <div class="card-text">
+        <div class="card-title">{{ book.title }}</div>
+        <div class="card-subtitle">{{ book.author }}</div>
+        <button
+          class="shop-btn"
+          (click)="handleShowDetails(book.bookId)"
+        >
+          Show Details
+        </button>
+      </div>
+    </div>
+  </div> -->
 </section>
 
 <div class="container">

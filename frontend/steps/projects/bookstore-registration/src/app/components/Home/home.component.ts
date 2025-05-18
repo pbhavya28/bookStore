@@ -46,6 +46,17 @@ export class HomeComponent implements OnInit {
       this.calculateTopCategories();   
     });
   }
+  handleShowDetails(bookId: number): void {
+    if (this.userState) {
+      this.router.navigate(['/detail', bookId]);
+    } else {
+      alert('Please log in first to view book details.');
+    }
+  }
+  trackByBookId(index: number, book: any): string {
+    return book._id;
+  }
+  
 
   calculateTopCategories(): void {
     const allTags = this.books.flatMap(book => book.tags);

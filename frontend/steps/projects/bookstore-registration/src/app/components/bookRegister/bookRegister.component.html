@@ -1,23 +1,29 @@
 <div class="admin-container">
-<nav class="navbar">
-  <div class="navbar-left">
-    <h2 routerLink="/admin"> BookLoca</h2>
-  </div>
-  <div class="navbar-right">
-    <button class="add-book-btn" routerLink="/admin">Dashboard</button>
-    <button class="add-book-btn" (click)="logoutUser()" >Logout</button>
-  </div>
-</nav>
-
+  <nav class="navbar">
+    <div class="navbar-left">
+      <h2 routerLink="/admin">BookLoca</h2>
+    </div>
+    <div class="navbar-right">
+      <button class="add-book-btn" routerLink="/admin">Dashboard</button>
+      <button class="add-book-btn" (click)="logoutUser()">Logout</button>
+    </div>
+  </nav>
 </div>
 
-<form [formGroup]="bookForm" (ngSubmit)="submitBook()" class="container mt-4 min-vw-100">
+<form
+  [formGroup]="bookForm"
+  (ngSubmit)="submitBook()"
+  class="container mt-4 min-vw-100"
+>
   <div class="card shadow p-4">
-    <h2 class="text-center text-primary mb-4" style="font-family: 'Courier New', Courier, monospace; font-weight: bold;">Register New Book</h2>
+    <h2
+      class="text-center text-primary mb-4"
+      style="font-family: 'Courier New', Courier, monospace; font-weight: bold"
+    >
+      Register New Book
+    </h2>
 
     <div class="row g-3">
-
-      <!-- Left Columns lists author,title,publisher,edistion and isbn -->
       <div class="col-md-6">
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Author:</label>
@@ -36,14 +42,22 @@
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Publisher:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="publisher" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="publisher"
+            />
           </div>
         </div>
 
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Publish Date:</label>
           <div class="col-sm-8">
-            <input type="date" class="form-control" formControlName="publishDate" />
+            <input
+              type="date"
+              class="form-control"
+              formControlName="publishDate"
+            />
           </div>
         </div>
 
@@ -62,12 +76,15 @@
         </div>
       </div>
 
-      <!-- Right Column language,pages,price,currency,category,download link and cover image -->
       <div class="col-md-6">
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Language:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="language" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="language"
+            />
           </div>
         </div>
 
@@ -88,79 +105,129 @@
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Currency:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="currency" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="currency"
+            />
           </div>
         </div>
 
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Category:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="category" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="category"
+            />
           </div>
         </div>
 
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Cover Image:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="coverImage" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="coverImage"
+            />
           </div>
         </div>
 
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">Download Link:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" formControlName="downloadLink" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="downloadLink"
+            />
           </div>
         </div>
       </div>
     </div>
 
-   
-
-    <!-- Image row -->
     <div class="mb-3">
       <label class="form-label">Number of Images:</label>
-      <input type="number" class="form-control w-25" [value]="imageCount" (input)="updateImageFields($event)" min="0" />
+      <input
+        type="number"
+        class="form-control w-25"
+        [value]="imageCount"
+        (input)="updateImageFields($event)"
+        min="0"
+      />
       <div formArrayName="images" class="mt-2">
         <div *ngFor="let image of images.controls; let i = index" class="mb-2">
           <label>Image URL {{ i + 1 }}</label>
-          <input type="text" class="form-control" [formControlName]="i" required />
+          <input
+            type="text"
+            class="form-control"
+            [formControlName]="i"
+            required
+          />
         </div>
       </div>
     </div>
 
-    <!-- Here add more than one book ids -->
     <div class="mb-3">
       <label class="form-label">Explore More Book IDs:</label>
       <div formArrayName="exploreMore">
-        <div *ngFor="let book of exploreMore.controls; let i = index" class="mb-2">
+        <div
+          *ngFor="let book of exploreMore.controls; let i = index"
+          class="mb-2"
+        >
           <label>Explore Book ID {{ i + 1 }}</label>
-          <input type="number" class="form-control" [formControlName]="i" required />
+          <input
+            type="number"
+            class="form-control"
+            [formControlName]="i"
+            required
+          />
         </div>
       </div>
     </div>
 
-    <!-- this is for book Tags -->
     <div class="mb-3">
       <label class="form-label">Tags:</label>
       <div formArrayName="tags">
-        <div *ngFor="let tag of tags.controls; let i = index" class="input-group mb-2">
-          <input type="text" class="form-control" [formControlName]="i" required />
-          <button type="button" class="btn btn-danger" (click)="removeTag(i)">Remove</button>
+        <div
+          *ngFor="let tag of tags.controls; let i = index"
+          class="input-group mb-2"
+        >
+          <input
+            type="text"
+            class="form-control"
+            [formControlName]="i"
+            required
+          />
+          <button type="button" class="btn btn-danger" (click)="removeTag(i)">
+            Remove
+          </button>
         </div>
-        <button type="button" class="btn btn-secondary" (click)="addTag()">Add Tag</button>
+        <button type="button" class="btn btn-secondary" (click)="addTag()">
+          Add Tag
+        </button>
       </div>
     </div>
 
-    <!-- desc area for the book -->
     <div class="mb-3">
       <label class="form-label">Description:</label>
-      <textarea class="form-control" formControlName="description" rows="4"></textarea>
+      <textarea
+        class="form-control"
+        formControlName="description"
+        rows="4"
+      ></textarea>
     </div>
 
-
     <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Submit Book</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="bookForm.invalid"
+      >
+        Submit Book
+      </button>
     </div>
   </div>
 </form>

@@ -4,6 +4,7 @@
   <div class="card shadow-lg p-4 border-0 register-card">
     <h2 class="text-center mb-4 text-success">User Registration</h2>
 
+
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-group mb-3">
         <label>Full Name</label>
@@ -12,6 +13,7 @@
           type="text"
           class="form-control form-control-lg animate-input"
           [ngClass]="{'is-invalid': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}"
+
         />
         <div class="invalid-feedback">Username is required.</div>
       </div>
@@ -23,6 +25,7 @@
           type="email"
           class="form-control form-control-lg animate-input"
           [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}"
+
         />
         <div class="invalid-feedback">Enter a valid email.</div>
       </div>
@@ -34,17 +37,26 @@
             formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
             class="form-control form-control-lg animate-input pe-5"
-            [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('password')?.invalid &&
+                registerForm.get('password')?.touched
+            }"
           />
           <span
             class="position-absolute top-50 end-0 translate-middle-y me-3"
-            style="cursor: pointer;"
+            style="cursor: pointer"
             (click)="togglePasswordVisibility()"
           >
-            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            <i
+              class="fa"
+              [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
           </span>
         </div>
-        <div class="invalid-feedback">Password must be at least 6 characters.</div>
+        <div class="invalid-feedback">
+          Password must be at least 6 characters.
+        </div>
       </div>
 
       <button

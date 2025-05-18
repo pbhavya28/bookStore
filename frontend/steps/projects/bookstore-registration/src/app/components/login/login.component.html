@@ -1,6 +1,7 @@
 
 
 <div class="login-page d-flex align-items-center justify-content-center min-vh-100 bg-gradient">
+
   <div class="card shadow-lg p-4 border-0 login-card">
     <h2 class="text-center mb-4 text-primary">Login</h2>
 
@@ -13,6 +14,7 @@
           class="form-control form-control-lg animate-input"
           [ngClass]="{
             'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+
           }"
         />
         <div class="invalid-feedback">Valid email required.</div>
@@ -26,15 +28,20 @@
             [type]="showPassword ? 'text' : 'password'"
             class="form-control form-control-lg animate-input pe-5"
             [ngClass]="{
-              'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+              'is-invalid':
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
             }"
           />
           <span
             class="position-absolute top-50 end-0 translate-middle-y me-3"
-            style="cursor: pointer;"
+            style="cursor: pointer"
             (click)="togglePasswordVisibility()"
           >
-            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            <i
+              class="fa"
+              [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
           </span>
         </div>
         <div class="invalid-feedback">Password is required.</div>
@@ -51,7 +58,9 @@
 
     <p class="text-center mt-3">
       Don't have an account?
-      <a routerLink="/register" class="text-success fw-semibold">Register here</a>
+      <a routerLink="/register" class="text-success fw-semibold"
+        >Register here</a
+      >
     </p>
 
     <div *ngIf="successMessage" class="alert alert-success mt-3 text-center">

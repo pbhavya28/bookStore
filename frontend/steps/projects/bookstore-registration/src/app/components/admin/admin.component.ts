@@ -11,6 +11,7 @@ export interface Book {
   publishDate: string;
   edition: string;
   _id: string; 
+
 }
 
 @Component({
@@ -34,10 +35,18 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  deleteBook(id: string): void {
-    this.bookService.deleteBook(id).subscribe(() => {
-      this.books = this.books.filter(book => book._id !== id);
-    });
+deleteBook(id: number): void {
+    if (confirm('Are you sure you want to delete this book?')) {
+      this.bookService.deleteBook(id.toString()).subscribe({
+        next: () => {
+          this.fetchBooks(); 
+        },
+        error: (err) => {
+          console.error('Error deleting book:', err);
+          alert('Failed to delete book');
+        }
+      });
+    }
   }
 
   addBook(){
