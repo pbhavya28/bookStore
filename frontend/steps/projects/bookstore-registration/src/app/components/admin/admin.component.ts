@@ -10,7 +10,7 @@ export interface Book {
   publisher: string;
   publishDate: string;
   edition: string;
-  _id: string; // MongoDB ID
+  _id: string; 
 }
 
 @Component({

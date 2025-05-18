@@ -1,9 +1,7 @@
-// routes/books.js
 const express = require('express');
 const router = express.Router();
-const Book = require('../models/book.model'); // Make sure the model exists
+const Book = require('../models/book.model'); 
 
-// POST /api/books - Add a new book
 router.post('/', async (req, res) => {
   try {
     const books  = await Book.find();
@@ -17,7 +15,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// (Optional) GET /api/books - Get all books
 router.get('/', async (req, res) => {
   try {
     const books = await Book.find();

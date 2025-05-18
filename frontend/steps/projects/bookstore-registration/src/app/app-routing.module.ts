@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'detail/:id', component: DetailComponent },
-  // default route
   { path: '', redirectTo: '/home', pathMatch: 'full' }, 
   {path: 'home',component: HomeComponent},
   {path: 'admin', component: AdminComponent},

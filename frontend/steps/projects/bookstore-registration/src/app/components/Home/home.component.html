@@ -11,7 +11,7 @@
 
   <div class="extra-links" *ngIf="userState; else loginTemplate">
     <span class="welcome-text"
-      >👋 Welcome, <strong>{{ userName }}</strong></span
+      > Welcome, <strong>{{ userName }}</strong></span
     >
     <button class="shop-btn" (click)="logoutUser()">Logout</button>
   </div>
@@ -39,11 +39,9 @@
 
 <div class="container mt-5">
   <div class="row">
-    <!-- First Container -->
     <div class="col-md-6 mb-4">
       <div class="p-3 border rounded">
         <div class="row align-items-center">
-          <!-- Text Left -->
           <div class="col-6">
             <h5>Why Read Books ?</h5>
             <p>
@@ -51,7 +49,6 @@
               mental and physical well-being, and enhancing various skills.
             </p>
           </div>
-          <!-- Image Right -->
           <div class="col-6 text-end">
             <img
               src="/images/bookPage1.png"
@@ -64,11 +61,9 @@
       </div>
     </div>
 
-    <!-- Second Container -->
     <div class="col-md-6 mb-4">
       <div class="p-3 border rounded">
         <div class="row align-items-center">
-          <!-- Text Left -->
           <div class="col-6">
             <h5>Fact about Books</h5>
             <p>
@@ -150,12 +145,35 @@
     </div>
   </div>
 </div>
+<div class="container mt-5">
+  <h3 class="text-center">Top Categories</h3>
+  <div class="category-list text-center">
+    <button 
+      *ngFor="let category of topCategories"
+      class="category-btn"
+      [class.selected]="category === selectedCategory"
+      (click)="filterByCategory(category)">
+      {{ category | uppercase }}
+    </button>
+    <button 
+      class="category-btn"
+      [class.selected]="selectedCategory === ''"
+      (click)="filterByCategory('')">
+      All
+    </button>
+  </div>
+</div>
 
-<div class="container">
+
+
+<div class="container ourBooks">
   <h1 style="text-align: center">Our Books</h1>
 </div>
 <section class="section-cards">
-  @for (book of books; track book._id) {
+
+    
+  <div *ngFor="let book of filteredBooks" class="col-md-3 col-sm-4 mb-4">
+
   <div class="card">
     <img src="{{ book.coverImage }}" alt="Korean Authors" id="coverImage" />
     <div class="card-text">
@@ -164,7 +182,7 @@
       <button class="shop-btn">Show Details</button>
     </div>
   </div>
-  }
+  </div>
 </section>
 
 <div class="container">
@@ -230,7 +248,6 @@
   <div class="footer-content">
     <div class="footer-section contact">
       <h3>Contact Us</h3>
-      <!-- <p>Email: support@teamQueen.com</p> -->
       <p>Phone: +91 888-6666-4567</p>
       <p>Address: Ahmedabad, Gujarat</p>
     </div>
