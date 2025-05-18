@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const Book = require('../models/book.model'); // Ensure the model exists
 
+const Book = require('../models/book.model'); 
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
+
   try {
     const books = await Book.find();
     const book = new Book(req.body);
@@ -95,13 +96,8 @@ router.post('/:id/rate', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
 
-// router.get('/', async (req, res) => {
-//   try {
-//     const books = await Book.find();
-//     res.json(books);
-
-router.get("/", async (req, res) => {
   try {
     const books = await Book.find();
     res.json(books);

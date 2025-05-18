@@ -47,7 +47,9 @@ router.post("/login", async (req, res) => {
     res.json({
       message: "Login successful",
       user: {
-        name: user.username,
+
+        name: user.username, 
+
         email: user.email,
         _id: user._id,
       },
@@ -63,3 +65,5 @@ router.post("/home", async (req, res) => {
 });
 
 module.exports = router;
+
+

@@ -1,6 +1,7 @@
-<div
-  class="login-page d-flex align-items-center justify-content-center min-vh-100 bg-gradient"
->
+
+
+<div class="login-page d-flex align-items-center justify-content-center min-vh-100 bg-gradient">
+
   <div class="card shadow-lg p-4 border-0 login-card">
     <h2 class="text-center mb-4 text-primary">Login</h2>
 
@@ -12,8 +13,8 @@
           type="email"
           class="form-control form-control-lg animate-input"
           [ngClass]="{
-            'is-invalid':
-              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+
           }"
         />
         <div class="invalid-feedback">Valid email required.</div>

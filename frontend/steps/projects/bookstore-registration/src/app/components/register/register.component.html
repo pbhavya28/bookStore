@@ -1,8 +1,9 @@
-<div
-  class="register-page d-flex align-items-center justify-content-center min-vh-100 bg-gradient"
->
+
+
+<div class="register-page d-flex align-items-center justify-content-center min-vh-100 bg-gradient">
   <div class="card shadow-lg p-4 border-0 register-card">
     <h2 class="text-center mb-4 text-success">User Registration</h2>
+
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-group mb-3">
@@ -11,11 +12,8 @@
           formControlName="username"
           type="text"
           class="form-control form-control-lg animate-input"
-          [ngClass]="{
-            'is-invalid':
-              registerForm.get('username')?.invalid &&
-              registerForm.get('username')?.touched
-          }"
+          [ngClass]="{'is-invalid': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}"
+
         />
         <div class="invalid-feedback">Username is required.</div>
       </div>
@@ -26,11 +24,8 @@
           formControlName="email"
           type="email"
           class="form-control form-control-lg animate-input"
-          [ngClass]="{
-            'is-invalid':
-              registerForm.get('email')?.invalid &&
-              registerForm.get('email')?.touched
-          }"
+          [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}"
+
         />
         <div class="invalid-feedback">Enter a valid email.</div>
       </div>
