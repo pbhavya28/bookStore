@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   standalone: false,
@@ -18,7 +20,7 @@ export class RegisterComponent {
     this.showPassword = !this.showPassword;
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,6 +35,7 @@ export class RegisterComponent {
       .subscribe({
         next: (res: any) => {
           this.successMessage = res.message || 'Registration successful!';
+          this.router.navigate(['/login']);
           this.errorMessage = '';
           this.registerForm.reset();
         },
